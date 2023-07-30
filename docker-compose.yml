@@ -1,0 +1,9 @@
+version: '3'
+services:
+  tautulli-epaper-display:
+    build: .
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TAUTULLI_URL=${TAUTULLI_URL}
+      - TAUTULLI_API_KEY=${TAUTULLI_API_KEY}

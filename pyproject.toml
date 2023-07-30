@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "tautulli-epaper-display"
+version = "1.0.0"
+description = "A python project that communicates with Tautulli API and displays on a 2.13 eink display."
+authors = ["Dylon Condon <dyloncondon@gmail.com>"]
+readme = ".github/README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+flake8 = "^6.0.0"
+pre-commit = "^3.2.2"
+pytest = "^7.3.1"
+pytest-mock = "^3.10.0"
+pytest-env = "^0.8.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "src"
+]
+env = [
+    "TAUTULLI_URL = some-url",
+    "TAUTULLI_API_KEY = some-key"
+]

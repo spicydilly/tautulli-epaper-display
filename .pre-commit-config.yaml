@@ -1,0 +1,40 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        description: Trims trailing whitespace
+      - id: end-of-file-fixer
+        description: Ensures that files end with a newline
+      - id: check-yaml
+        args: ["--allow-multiple-documents"]
+        description: Checks that YAML files are well-formed
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+        description: Forces to replace line ending by the UNIX 'lf' character.
+      - id: check-added-large-files
+        args: ["--maxkb=6000"]
+        description: Prevents the addition of large files to the repository
+      - id: no-commit-to-branch
+        args: [--branch, main]
+        description: Prevents pushes directly to main branch
+      - id: check-json
+  - repo: https://github.com/pycqa/flake8
+    rev: "6.0.0"
+    hooks:
+      - id: flake8
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint-docker
+        verbose: true
+        args:
+          - --failure-threshold
+          - error
+          - --ignore
+          - DL3008

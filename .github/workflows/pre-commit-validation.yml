@@ -1,0 +1,39 @@
+---
+name: Pre-commit Validation & Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Poetry
+        run: |
+          pip install --user poetry
+
+      - name: Install dependencies using Poetry
+        run: |
+          poetry install --no-interaction --no-root
+
+      - name: Run Unit Tests
+        run: |
+          poetry run pytest
+
+      - name: Run pre-commit
+        run: poetry run pre-commit run --all-files

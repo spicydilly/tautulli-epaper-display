@@ -1,0 +1,2 @@
+#run python script every minute
+* * * * * TAUTULLI_URL=$TAUTULLI_URL TAUTULLI_API_KEY=$TAUTULLI_API_KEY /usr/local/bin/python3 /app/src/tautulli_display.py >/proc/1/fd/1 2>/proc/1/fd/2
