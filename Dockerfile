@@ -34,6 +34,9 @@ COPY crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab \
     && /usr/bin/crontab /etc/cron.d/crontab
 
+# Set Timezone
+ENV TZ="Europe/London"
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
